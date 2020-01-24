@@ -1,9 +1,24 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from './App';
+import App, { addCount } from './App';
+import { unmountComponentAtNode } from 'react-dom';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+it('Renders without errors!', () => {
+  const div = document.createElement("div");
+
+  render(<App />, div);
+
+  unmountComponentAtNode(div);
 });
+
+test('Function addCount has no errors!', () => {
+  // ARRANGE
+  const currentCount = 2;
+  const expected = 3;
+
+  // ACT
+  const actual = addCount(currentCount);
+
+  // ASSERT
+  expect(actual).toBe(expected);
+})
