@@ -6,6 +6,11 @@ export const addCount = initialValue => {
   return initialValue + 1
 }
 
+export const hitBtn = (ball, strike) => {
+  ball(0);
+  strike(0);
+}
+
 function App() {
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
@@ -19,13 +24,13 @@ function App() {
     setOutCount(addCount(outCount))
   }
 
-  if (strikeCount > 2) {
+  if (strikeCount > 3) {
     setStrikeCount(0);
     setBallCount(0);
     setOutCount(addCount(outCount));
   }
 
-  if (outCount > 2) {
+  if (outCount > 3) {
     setOutCount(0);
     setStrikeCount(0);
     setBallCount(0);
@@ -43,7 +48,7 @@ function App() {
           <button className='strikeBtn' onClick={() => setStrikeCount(addCount(strikeCount))}>Strike</button>
           <button className='outBtn' onClick={() => setOutCount(addCount(outCount))}>Out</button>
         </div>
-        <button>Hit</button>
+        <button className='hitBtn' onClick={() => hitBtn(setBallCount, setStrikeCount)}>Hit</button>
       </div>
     </div>
   );
