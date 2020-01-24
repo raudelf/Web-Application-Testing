@@ -1,6 +1,6 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import App, { addCount } from './App';
+import { render, getByText } from '@testing-library/react';
+import App, { addCount, hitBtn } from './App';
 import ReactDOM, { unmountComponentAtNode } from 'react-dom';
 
 it('Renders without errors!', () => {
@@ -31,3 +31,30 @@ test('Function addCount has no errors!', () => {
   // ASSERT
   expect(actual).toBe(expected);
 })
+
+test('Top Display has no errors!', () => {
+  // ARRANGE
+  const { getByText } = render(<App />);
+
+  // ACT
+  getByText(/home/i);
+  getByText(/inning/i);
+  getByText(/away/i);
+})
+
+test('Bottom Display has no errors!', () => {
+  // ARRANGE
+  const expectedElements = 2;
+  const { getAllByText } = render(<App />);
+
+  // ACT
+  const ballElements = getAllByText(/ball/i);
+  const strikeElements = getAllByText(/strike/i)
+  const outElements = getAllByText(/out/i);
+
+  // ASSERTION
+  expect(ballElements.length).toBe(expectedElements);
+  expect(strikeElements.length).toBe(expectedElements);
+  expect(outElements.length).toBe(expectedElements);
+}
+)
