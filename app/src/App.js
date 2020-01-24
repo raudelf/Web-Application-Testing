@@ -9,7 +9,7 @@ export const addCount = initialValue => {
 
 export const hitBtn = (ball, strike) => {
   ball(0);
-  strike(0);
+  strike(0);t 
 }
 
 function App() {
