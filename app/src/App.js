@@ -43,15 +43,7 @@ function App() {
         <h1>Scoreboard App</h1>
       </header>
       <Display homeScore={homeScore} inningCount={inningCount} awayScore={awayScore} ballCount={ballCount} strikeCount={strikeCount} outCount={outCount}/>
-      {/*<div className='buttons'>
-        <div className='bottomButtons'>
-          <button className='ballBtn' onClick={() => setBallCount(addCount(ballCount))}>Ball</button>
-          <button className='strikeBtn' onClick={() => setStrikeCount(addCount(strikeCount))}>Strike</button>
-          <button className='outBtn' onClick={() => setOutCount(addCount(outCount))}>Out</button>
-        </div>
-        <button className='hitBtn' onClick={() => hitBtn(setBallCount, setStrikeCount)}>Hit</button>
-  </div>*/}
-  <Dashboard setBallCount={setBallCount} setStrikeCount={setStrikeCount} setOutCount={setOutCount} ballCount={ballCount} strikeCount={strikeCount} outCount={outCount}/>
+      <Dashboard setBallCount={setBallCount} setStrikeCount={setStrikeCount} setOutCount={setOutCount} ballCount={ballCount} strikeCount={strikeCount} outCount={outCount}/>
     </div>
   );
 }
