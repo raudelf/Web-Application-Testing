@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Display from './components/Display';
+import Dashboard from './components/Dashboard';
 
 export const addCount = initialValue => {
   return initialValue + 1
@@ -42,14 +43,15 @@ function App() {
         <h1>Scoreboard App</h1>
       </header>
       <Display homeScore={homeScore} inningCount={inningCount} awayScore={awayScore} ballCount={ballCount} strikeCount={strikeCount} outCount={outCount}/>
-      <div className='buttons'>
+      {/*<div className='buttons'>
         <div className='bottomButtons'>
           <button className='ballBtn' onClick={() => setBallCount(addCount(ballCount))}>Ball</button>
           <button className='strikeBtn' onClick={() => setStrikeCount(addCount(strikeCount))}>Strike</button>
           <button className='outBtn' onClick={() => setOutCount(addCount(outCount))}>Out</button>
         </div>
         <button className='hitBtn' onClick={() => hitBtn(setBallCount, setStrikeCount)}>Hit</button>
-      </div>
+  </div>*/}
+  <Dashboard setBallCount={setBallCount} setStrikeCount={setStrikeCount} setOutCount={setOutCount} ballCount={ballCount} strikeCount={strikeCount} outCount={outCount}/>
     </div>
   );
 }
