@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 
+export const addCount = initialValue => {
+  return initialValue + 1
+}
+
 function App() {
   const [homeScore, setHomeScore] = useState(0);
   const [awayScore, setAwayScore] = useState(0);
@@ -9,6 +13,22 @@ function App() {
   const [strikeCount, setStrikeCount] = useState(0);
   const [outCount, setOutCount] = useState(0);
 
+  if (ballCount > 4) {
+    setBallCount(0);
+    setOutCount(addCount(outCount))
+  }
+
+  if (strikeCount > 2) {
+    setStrikeCount(0);
+    setBallCount(0);
+    setOutCount(addCount(outCount));
+  }
+
+  if (outCount > 2) {
+    setOutCount(0);
+    setStrikeCount(0);
+    setBallCount(0);
+  }
 
   return (
     <div className="App">
@@ -17,35 +37,41 @@ function App() {
       </header>
       <div className='scoreboard'>
         <div className='topRow'>
-          <div className='homeBox'>
+          <div className='home Box'>
             <h1 className='homeName'>HOME</h1>
-            <div className='homeScore'>{homeScore}</div>
+            <div className='home Count'>{homeScore}</div>
           </div>
-          <div className='inningBox'>
+          <div className='inning Box'>
             <h1>INNING</h1>
-            <div className='inning'>{inningCount}</div>
+            <div className='inning Count'>{inningCount}</div>
           </div>
-          <div className='awayBox'>
+          <div className='away Box'>
             <h1 className='awayName'>AWAY</h1>
-            <div className='awayScore'>{awayScore}</div>
+            <div className='away Count'>{awayScore}</div>
           </div>
         </div>
         <div className='bottomRow'>
-          <div className='ballCountBox'>
+          <div className='ballCount Box'>
             <h1 className='ballName'>BALL</h1>
-            <div className='ballCount'>{ballCount}</div>
+            <div className='ball Count'>{ballCount}</div>
           </div>
-          <div className='strikeBox'>
+          <div className='strike Box'>
             <h1 className='strikeName'>STRIKE</h1>
-            <div className='strikeCount'>{strikeCount}</div>
+            <div className='strike Count'>{strikeCount}</div>
           </div>
-          <div className='outBox'>
-            <h1 className='outName'>STRIKE</h1>
-            <div className='outCount'>{outCount}</div>
+          <div className='out Box'>
+            <h1 className='outName'>OUT</h1>
+            <div className='out Count'>{outCount}</div>
           </div>
         </div>
       </div>
-      <div className='dashControls'>
+      <div className='buttons'>
+        <div className='bottomButtons'>
+          <button className='ballBtn' onClick={() => setBallCount(addCount(ballCount))}>Ball</button>
+          <button className='strikeBtn' onClick={() => setStrikeCount(addCount(strikeCount))}>Strike</button>
+          <button className='outBtn' onClick={() => setOutCount(addCount(outCount))}>Out</button>
+        </div>
+        <button>Hit</button>
       </div>
     </div>
   );
